@@ -1,24 +1,25 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { GET_LOGIN } from '../../config';
 import styled from 'styled-components';
 
 const { Kakao } = window;
 
 function KakaoLogin() {
+  const history = useHistory();
   const kakaoLoginClickHandler = () => {
     Kakao.Auth.login({
       success: function (authObj) {
-        console.log(authObj.access_token);
         fetch(`${GET_LOGIN}users/sign-in/kakao`, {
           method: 'POST',
           headers: { Authorization: authObj.access_token },
         })
           .then(res => res.json())
           .then(res => {
-            console.log(res);
             localStorage.setItem('Kakao_token', res.token);
             if (res.token) {
               alert('METABOX에 오신걸 환영합니다!');
+              history.push('/');
             }
           });
       },

@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import GuideText from './GuideText';
 
-function Inputs({ format, setValues, inputValue, onSign }) {
-  const emailValid = /^[a-zA-Z\d+-.]+@[a-zA-Z\d+-.]+\.[a-zA-Z]{2,3}$/;
-  const pwValid =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-  const birthValid = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/;
+const emailValid = /^[a-zA-Z\d+-.]+@[a-zA-Z\d+-.]+\.[a-zA-Z]{2,3}$/;
+const pwValid =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+const birthValid =
+  /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 
+function Inputs({ format, setValues, inputValue, onSign }) {
   const isValidInput = item => {
     const { email, emailOk, password, passwordOk, name, birthday } = inputValue;
     const INPUT_VALIDATION_MAP = {
@@ -34,7 +35,11 @@ function Inputs({ format, setValues, inputValue, onSign }) {
                 name={input.name}
                 type={input.type}
                 placeholder={input.holder}
-                value={input.value}
+                value={
+                  input.name === 'birthday'
+                    ? input.value.replace(/(\d{4})(\d{2})(\d{1})/g, '$1-$2-$3')
+                    : input.value
+                }
               />
               {input.name === 'emailOk' && (
                 <OverlapOk isValidInput={isValidInput}>중복 확인</OverlapOk>

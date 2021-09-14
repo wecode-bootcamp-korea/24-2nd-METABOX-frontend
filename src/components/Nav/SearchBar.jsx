@@ -50,7 +50,7 @@ function SearchBar({ isDisplayed }) {
 
 const DropDown = styled.div`
   position: absolute;
-  top: 90px;
+  top: 80px;
   width: 100%;
   border: 1px solid black;
   display: ${props => (props.isDisplayed ? 'flex' : 'none')};
@@ -92,10 +92,10 @@ const ImageWrapper = styled.div`
   height: 214px;
   margin-right: 50px;
 `;
-const MovieImage = styled.img`
-  max-width: 100%;
-  flex-shrink: 0;
-`;
+// const MovieImage = styled.img`
+//   max-width: 100%;
+//   flex-shrink: 0;
+// `;
 
 const MovieRank = styled.span`
   font-style: italic;
