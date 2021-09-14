@@ -55,7 +55,7 @@ function SiteMap({ isDisplayed }) {
 
 const TopWrapper = styled.div`
   position: absolute;
-  top: 90px;
+  top: 80px;
   width: 100%;
   display: ${props => (props.isDisplayed ? 'flex' : 'none')};
   justify-content: center;
