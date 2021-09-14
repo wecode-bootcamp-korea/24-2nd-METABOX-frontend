@@ -38,39 +38,39 @@ function Main() {
     }
   };
 
-  useEffect(() => {
-    if (pagination.offset !== 0)
-      fetch(
-        `${URL}:8001/movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&search=${searchWords}`
-      )
-        .then(response => response.json())
-        .then(result => {
-          setMovieList(movieList.concat(result['results']));
-          setPagination({
-            ...pagination,
-            totalPage: Math.ceil(result['totalCount'] / pagination.limit),
-          });
-        });
-  }, [pagination.offset]);
+  // useEffect(() => {
+  //   if (pagination.offset !== 0)
+  //     fetch(
+  //       `${URL}:8001/movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&search=${searchWords}`
+  //     )
+  //       .then(response => response.json())
+  //       .then(result => {
+  //         setMovieList(movieList.concat(result['results']));
+  //         setPagination({
+  //           ...pagination,
+  //           totalPage: Math.ceil(result['totalCount'] / pagination.limit),
+  //         });
+  //       });
+  // }, [pagination.offset]);
 
   useEffect(() => {
     getMovieList();
   }, [sortOrderBy]);
 
   const getMovieList = () => {
-    fetch(
-      `${URL}:8001/movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&search=${searchWords}`
-    )
-      .then(response => response.json())
-      .then(result => {
-        setMovieList(result['Result']);
-        setPagination({
-          ...pagination,
-          totalPage: Math.ceil(result['Total_count'] / pagination.limit),
-          currentPage: 1,
-          offset: 0,
-        });
-      });
+    // fetch(
+    //   `${URL}:8001/movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&search=${searchWords}`
+    // )
+    //   .then(response => response.json())
+    //   .then(result => {
+    //     setMovieList(result['Result']);
+    //     setPagination({
+    //       ...pagination,
+    //       totalPage: Math.ceil(result['Total_count'] / pagination.limit),
+    //       currentPage: 1,
+    //       offset: 0,
+    //     });
+    //   });
   };
 
   const onAddMovieListClick = () => {

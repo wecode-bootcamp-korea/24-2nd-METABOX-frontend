@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { withRouter, Link } from 'react-router-dom';
-
+import { API } from '../../config';
+import { customFetch } from '../../utils/api';
 import Modal from '../../components/Modal/Modal';
-import { GET_LOGIN } from '../../config';
 import SiteMap from './SiteMap';
 import SearchBar from './SearchBar';
 import NavButton from './NavButton';
+import styled from 'styled-components';
 
 const INITIAL_INPUT = {
   name: '',
@@ -61,7 +61,7 @@ function Nav() {
         type: 'birthday',
         name: 'birthday',
         value: loginInput.birthday,
-        text: '생년월일 6자리 ex) 931102',
+        text: '생년월일 8자리 ex) 1990-05-05',
         holder: '생년월일',
         data: '정확하지 않은 생년월일입니다.',
       },
@@ -148,48 +148,62 @@ function Nav() {
 
   const onSign = format => {
     const signup = format.type;
-    const { name, birthday, emailOk, password } = loginInput;
 
     if (signup === 'signUp') {
-      fetch(`${GET_LOGIN}users/sign-up`, {
-        method: 'POST',
+      requestSignup(loginInput);
+    } else {
+      requestSignIn(loginInput);
+    }
+  };
+
+  const requestSignup = loginInput => {
+    const { name, birthday, emailOk, password } = loginInput;
+    customFetch(
+      API.SIGNUP,
+      {
         body: JSON.stringify({
           name: name,
           birth_day: birthday,
           email: emailOk,
           password: password,
         }),
-      })
-        .then(res => res.json())
-        .then(res => {
+      },
+      {
+        onSuccess: res => {
           if (res.MESSAGE === 'SUCCESS') {
             alert('회원가입 성공');
             onClickSignUp();
           } else {
             alert('양식을 다시 한 번 확인해주세요');
           }
-        });
-    } else {
-      fetch(`${GET_LOGIN}users/sign-in`, {
-        method: 'POST',
-        body: JSON.stringify({
-          email: loginInput.email,
-          password: loginInput.password,
-        }),
-      })
-        .then(res => res.json())
-        .then(res => {
-          if (res.token) {
-            localStorage.setItem('token', res.token);
-          }
-          if (res.MESSAGE === 'SUCCESS') {
-            alert('METABOX에 오신 걸 환영합니다');
-            handleModal();
-          } else {
-            alert('이메일과 비밀번호를 다시 한 번 확인해주세요');
-          }
-        });
-    }
+        },
+      }
+    );
+  };
+
+  const requestSignIn = loginInput => {
+    const { email, password } = loginInput;
+    customFetch(API.SIGNIN, {
+      body: JSON.stringify(
+        {
+          email: email,
+          password: password,
+        },
+        {
+          onSuccess: res => {
+            if (res.token) {
+              localStorage.setItem('token', res.token);
+            }
+            if (res.MESSAGE === 'SUCCESS') {
+              alert('METABOX에 오신 걸 환영합니다');
+              handleModal();
+            } else {
+              alert('이메일과 비밀번호를 다시 한 번 확인해주세요');
+            }
+          },
+        }
+      ),
+    });
   };
 
   const [isSiteMapClicked, setIsSiteMapClicked] = useState(false);
@@ -228,13 +242,9 @@ function Nav() {
               <CustomerServiceLink to="">고객센터</CustomerServiceLink>
             </div>
             <div>
-              <UserLink to="" onClick={goToLogin}>
-                로그인
-              </UserLink>
-              <UserLink to="" onClick={goToSignUp}>
-                회원가입
-              </UserLink>
-              <UserLink to="">빠른예매</UserLink>
+              <UserLink onClick={goToLogin}>로그인</UserLink>
+              <UserLink onClick={goToSignUp}>회원가입</UserLink>
+              <UserLink>빠른예매</UserLink>
             </div>
           </UserSupportWrapper>
           <CategoryWrapper>
@@ -362,10 +372,11 @@ const CustomerServiceLink = styled(Link)`
   color: #888;
 `;
 
-const UserLink = styled(Link)`
+const UserLink = styled.span`
   margin-left: 20px;
   font-size: 0.75em;
   color: #888;
+  cursor: pointer;
 `;
 
 const LowerLeftLink = styled(Link)`
