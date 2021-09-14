@@ -1,0 +1,52 @@
+{
+  "MOVIE_LIST": [
+    {
+      "id": 1,
+      "movie_name": "건축학개론",
+      "released_date": "2012-03-22",
+      "post_count": 360,
+      "poster_image": "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+      "still_image": [
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8",
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8",
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8"
+      ]
+    },
+    {
+      "id": 2,
+
+      "movie_name": "지금, 만나러 갑니다",
+      "released_date": "2004-10-30",
+      "post_count": 310,
+      "poster_image": "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8",
+
+      "still_image": [
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8",
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8",
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8"
+      ]
+    },
+    {
+      "id": 3,
+
+      "movie_name": "엽기적인 그녀",
+      "released_date": "2001-07-27",
+      "post_count": 203,
+      "poster_image": "https://t1.daumcdn.net/movie/b3e490cb512acb3b582b97815825eed87bfd45cf",
+      "still_image": [
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8",
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8",
+        "http://t1.daumcdn.net/cfile/1141944C4F4B753125",
+        "http://t1.daumcdn.net/movie/6b0595bfd73cdf3d34e54929e1bf01360bde9ac8"
+      ]
+    }
+  ]
+}
