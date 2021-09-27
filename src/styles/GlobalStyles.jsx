@@ -31,6 +31,9 @@ figcaption,
 footer,
 nav,
 section,
+dl,
+dd,
+dt,
 main {
   margin: 0;
   padding: 0;
