@@ -39,17 +39,23 @@ const ThaterList = () => {
 
     const selectList = [...theaterSelectList];
     const changeIndex = selectList.findIndex(item => item !== -1);
+    const alertCheckList = selectList.filter(item => item && !undefined);
     selectList.splice(changeIndex, 0, data);
-    selectList.pop();
-    setLocationActive(true);
-    setTheaterSelectList(selectList);
-    setBookingActive(true);
+    if (alertCheckList.length < 3) {
+      selectList.pop();
+      setLocationActive(true);
+      setTheaterSelectList(selectList);
+      setBookingActive(true);
+    } else {
+      alert('극장은 최대 3개까지 선택 가능합니다.');
+      return;
+    }
 
     fetch(`${URL}/bookings?movie-id=${movieID}&theater-id=${data.theater_id}`)
       .then(res => res.json())
       .then(data => {
-        setMovieStartTime(data.TIMETABLE.map(item => item.start_time));
-        setMovieEndTime(data.TIMETABLE.map(item => item.end_time));
+        setMovieStartTime(...data.TIMETABLE.map(item => item.start_time));
+        setMovieEndTime(...data.TIMETABLE.map(item => item.end_time));
       });
   };
 
@@ -180,6 +186,7 @@ const TheaterTabBtn = styled.div`
   border: 1px solid #666;
   border-bottom: ${({ primary }) => primary || '0'};
   border-right: ${({ primary }) => primary || '0'};
+  background: ${({ primary }) => primary && '#f7f8f9'};
   font-size: 13px;
   text-align: center;
 `;
