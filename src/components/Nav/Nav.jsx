@@ -1,6 +1,12 @@
-import { React, useState } from 'react';
-import { GET_LOGIN } from '../../config';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { withRouter, Link } from 'react-router-dom';
+
 import Modal from '../../components/Modal/Modal';
+import { GET_LOGIN } from '../../config';
+import SiteMap from './SiteMap';
+import SearchBar from './SearchBar';
+import NavButton from './NavButton';
 
 const INITIAL_INPUT = {
   name: '',
@@ -186,24 +192,226 @@ function Nav() {
     }
   };
 
+  const [isSiteMapClicked, setIsSiteMapClicked] = useState(false);
+  const [isSearchClicked, setIsSearchClicked] = useState(false);
+
+  const onSiteMapClick = () => {
+    if (isSearchClicked) setIsSearchClicked(!isSearchClicked);
+    setIsSiteMapClicked(!isSiteMapClicked);
+  };
+
+  const onSearchClick = () => {
+    if (isSiteMapClicked) setIsSiteMapClicked(!isSiteMapClicked);
+    setIsSearchClicked(!isSearchClicked);
+  };
+
   return (
-    <div>
-      <button onClick={goToLogin}>로그인</button>
-      <button onClick={goToSignUp}>회원가입</button>
-      {showModal && (
-        <Modal
-          handleModal={handleModal}
-          onClickWindow={onClickWindow}
-          isSignUp={isSignUp}
-          onClickSignUp={onClickSignUp}
-          setValues={setValues}
-          inputValue={loginInput}
-          format={isSignUp ? SIGNUP : LOGIN}
-          onSign={onSign}
-        />
-      )}
-    </div>
+    <>
+      <Navigator>
+        {showModal && (
+          <Modal
+            handleModal={handleModal}
+            onClickWindow={onClickWindow}
+            isSignUp={isSignUp}
+            onClickSignUp={onClickSignUp}
+            setValues={setValues}
+            inputValue={loginInput}
+            format={isSignUp ? SIGNUP : LOGIN}
+            onSign={onSign}
+          />
+        )}
+        <Container>
+          <UserSupportWrapper>
+            <div>
+              <CustomerServiceLink to="">VIP LOUNGE</CustomerServiceLink>
+              <CustomerServiceLink to="">멤버쉽</CustomerServiceLink>
+              <CustomerServiceLink to="">고객센터</CustomerServiceLink>
+            </div>
+            <div>
+              <UserLink to="" onClick={goToLogin}>
+                로그인
+              </UserLink>
+              <UserLink to="" onClick={goToSignUp}>
+                회원가입
+              </UserLink>
+              <UserLink to="">빠른예매</UserLink>
+            </div>
+          </UserSupportWrapper>
+          <CategoryWrapper>
+            <CategorySubWrapper>
+              <NavButton
+                onClick={onSiteMapClick}
+                isClicked={isSiteMapClicked}
+                type={'sitemap'}
+              ></NavButton>
+              <NavButton
+                onClick={onSearchClick}
+                isClicked={isSearchClicked}
+                type={'search'}
+              ></NavButton>
+              <Categories>
+                {leftCategoryList.map((category, index) => (
+                  <LeftCategory key={index}>
+                    <LowerLeftLink to="">{category.name}</LowerLeftLink>
+                  </LeftCategory>
+                ))}
+              </Categories>
+            </CategorySubWrapper>
+            <Link to="">
+              <Logo
+                src={process.env.PUBLIC_URL + '/image/full_logo_white.png'}
+                alt="full_logo_white"
+              />
+            </Link>
+            <CategorySubWrapper>
+              <Categories>
+                {rightCategoryList.map((category, index) => (
+                  <RightCategory key={index}>
+                    <LowerRightLink to="">{category.name}</LowerRightLink>
+                  </RightCategory>
+                ))}
+              </Categories>
+              <Button>
+                <i className="fas fa-table"></i>
+              </Button>
+              <Button>
+                <i className="far fa-user"></i>
+              </Button>
+            </CategorySubWrapper>
+          </CategoryWrapper>
+        </Container>
+        <SiteMap isDisplayed={isSiteMapClicked}></SiteMap>
+        <SearchBar isDisplayed={isSearchClicked}></SearchBar>
+      </Navigator>
+    </>
   );
 }
+export default withRouter(Nav);
 
-export default Nav;
+const leftCategoryList = [
+  {
+    name: '영화',
+    subcategories: ['전체영화', 'N스크린', '큐레이션', '무비포스트'],
+  },
+  {
+    name: '예매',
+    subcategories: ['빠른예매', '상영시간표', '더 부티크 프라이빗 예매'],
+  },
+  {
+    name: '무비포스트',
+    subcategories: ['전체극장', '특별관'],
+  },
+];
+
+const rightCategoryList = [
+  {
+    name: '이벤트',
+    subcategories: ['진행중 이벤트', '지난 이벤트', '당첨자발표'],
+  },
+  {
+    name: '스토어',
+    subcategories: [],
+  },
+  {
+    name: '혜택',
+    subcategories: ['메가박스 멤버십', '제휴/할인'],
+  },
+];
+
+const Logo = styled.img`
+  width: 160px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-60%);
+  top: 7px;
+`;
+
+const Navigator = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+
+const Container = styled.div`
+  position: relative;
+  min-width: 1100px;
+  margin-top: 10px;
+`;
+
+const UserSupportWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  max-width: 100%;
+  padding: 0;
+  font-size: 1.05em;
+`;
+
+const CategoryWrapper = styled.div`
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CustomerServiceLink = styled(Link)`
+  margin-right: 20px;
+  font-size: 0.75em;
+  color: #888;
+`;
+
+const UserLink = styled(Link)`
+  margin-left: 20px;
+  font-size: 0.75em;
+  color: #888;
+`;
+
+const LowerLeftLink = styled(Link)`
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+`;
+
+const LowerRightLink = styled(Link)`
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+`;
+
+const Categories = styled.ul`
+  display: flex;
+  align-items: start;
+  padding-right: 45px;
+  padding-left: 45px;
+  height: 46px;
+`;
+const LeftCategory = styled.li`
+  position: relative;
+  margin-left: 45px;
+  padding-top: 5px;
+  padding-bottom: 11px;
+`;
+
+const RightCategory = styled.li`
+  position: relative;
+  margin-right: 52px;
+  padding-top: 5px;
+  padding-bottom: 11px;
+`;
+
+const CategorySubWrapper = styled.div`
+  display: flex;
+`;
+const Button = styled.button`
+  display: flex;
+  border: 0;
+  outline: none;
+  color: white;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  font-size: 22px;
+  padding: 0 9px;
+  margin-top: 5px;
+`;
