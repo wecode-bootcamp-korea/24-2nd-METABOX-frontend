@@ -15,7 +15,7 @@ function Footer() {
             서울시 강남구 테헤란로 427 위워크 타워(위워크 선릉 2호점) 3층
           </span>
           <span>프론트 엔드 : 김동준 · 김영현 · 이송현 </span>
-          <span> 백엔드 : 송치헌 · 윤현묵 · 주종민</span>
+          <span> 백엔드 : 송치헌 · 윤현묵 · 주종민 </span>
           <span>COPYRIGHT © Metabox, Inc. All rights reserved</span>
         </FooterText>
         <AllLink>

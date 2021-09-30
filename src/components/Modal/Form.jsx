@@ -36,7 +36,7 @@ function Form({
             </>
           }
           <OrLine></OrLine>
-          <KakaoLogin />
+          <KakaoLogin handleModal={handleModal} />
         </LinkBox>
       </InputContainer>
     </>

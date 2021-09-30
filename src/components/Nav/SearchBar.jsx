@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-import { url } from '../../config';
+import { MAIN_URL } from '../../config';
+import styled from 'styled-components';
 
 const LIMIT = 5;
 const SORT = '-releaseDate';
@@ -10,12 +9,14 @@ const SORT = '-releaseDate';
 function SearchBar({ isDisplayed }) {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch(`${URL}:8001/movies/list?limit=${LIMIT}&orderby=${SORT}`)
+    fetch(`${MAIN_URL}movies/list?limit=${LIMIT}&orderby=${SORT}`)
       .then(response => response.json())
       .then(result => {
-        setMovies(result['results']);
+        setMovies(result['Result']);
       });
   }, []);
+
+  console.log(movies);
 
   return (
     <DropDown isDisplayed={isDisplayed}>
@@ -26,13 +27,20 @@ function SearchBar({ isDisplayed }) {
         </SortingWrapper>
         <HeaderSearchWrapper>
           <ImageWrapper>
-            {/* <MovieImage src={movies[0].image_url} alt="movie-poster" /> */}
+            {/* <MovieImage
+              src={
+                movies !== []
+                  ? movies[0].image_url
+                  : 'https://movie-phinf.pstatic.net/20121211_228/1355191182006f7L58_JPEG/movie_image.jpg?type=m665_443_2'
+              }
+              alt="movie-poster"
+            /> */}
           </ImageWrapper>
           <MovieList>
             {movies.map((movie, index) => (
               <Movie>
                 <MovieRank>{index}</MovieRank>
-                <MovieTitle to="">{movie.title}</MovieTitle>
+                <MovieTitle to="">{movie.movies_title}</MovieTitle>
               </Movie>
             ))}
           </MovieList>
@@ -57,6 +65,7 @@ const DropDown = styled.div`
   justify-content: center;
   padding: 50px 400px;
   background-color: #372667;
+  z-index: 1000;
 `;
 
 const SubWrapper = styled.div`
@@ -92,10 +101,10 @@ const ImageWrapper = styled.div`
   height: 214px;
   margin-right: 50px;
 `;
-// const MovieImage = styled.img`
-//   max-width: 100%;
-//   flex-shrink: 0;
-// `;
+const MovieImage = styled.img`
+  max-width: 100%;
+  flex-shrink: 0;
+`;
 
 const MovieRank = styled.span`
   font-style: italic;

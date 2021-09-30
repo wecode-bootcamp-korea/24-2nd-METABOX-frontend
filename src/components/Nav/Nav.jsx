@@ -242,8 +242,12 @@ function Nav() {
               <CustomerServiceLink to="">고객센터</CustomerServiceLink>
             </div>
             <div>
-              <UserLink onClick={goToLogin}>로그인</UserLink>
-              <UserLink onClick={goToSignUp}>회원가입</UserLink>
+              <UserLink to="/" onClick={goToLogin}>
+                로그인
+              </UserLink>
+              <UserLink to="/" onClick={goToSignUp}>
+                회원가입
+              </UserLink>
               <UserLink to="/booking">빠른예매</UserLink>
             </div>
           </UserSupportWrapper>
@@ -262,7 +266,11 @@ function Nav() {
               <Categories>
                 {leftCategoryList.map((category, index) => (
                   <LeftCategory key={index}>
-                    <LowerLeftLink to="">{category.name}</LowerLeftLink>
+                    <LowerLeftLink
+                      to={category.name === '무비포스트' && '/moviepost'}
+                    >
+                      {category.name}
+                    </LowerLeftLink>
                   </LeftCategory>
                 ))}
               </Categories>
@@ -342,7 +350,7 @@ const Navigator = styled.nav`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #3b2a77;
 `;
 
 const Container = styled.div`
@@ -354,7 +362,7 @@ const Container = styled.div`
 const UserSupportWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   max-width: 100%;
   padding: 0;
   font-size: 1.05em;
@@ -369,14 +377,22 @@ const CategoryWrapper = styled.div`
 const CustomerServiceLink = styled(Link)`
   margin-right: 20px;
   font-size: 0.75em;
-  color: #888;
+  color: #ffff;
+  opacity: 0.5;
+  :hover {
+    opacity: 1;
+  }
 `;
 
 const UserLink = styled(Link)`
   margin-left: 20px;
   font-size: 0.75em;
-  color: #888;
+  color: #ffff;
   cursor: pointer;
+  opacity: 0.5;
+  :hover {
+    opacity: 1;
+  }
 `;
 
 const LowerLeftLink = styled(Link)`

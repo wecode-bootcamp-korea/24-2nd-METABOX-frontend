@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 function WriteFirstStep({
@@ -12,13 +12,6 @@ function WriteFirstStep({
     history.push('/moviepost');
   };
 
-  useEffect(() => {
-    const unblock = history.block('페이지를 떠나실건가요?');
-    return () => {
-      unblock();
-    };
-  }, [history]);
-
   return (
     <>
       <PostTexts>
@@ -28,21 +21,22 @@ function WriteFirstStep({
         </PossibleMovies>
       </PostTexts>
       <AllMovies>
-        {myMovies.map(movie => (
-          <Poster
-            img={movie.poster_image}
-            onClick={() => onClickMovie(movie)}
-            myMovies={myMovies}
-            movie={movie}
-            key={movie.id}
-          >
-            <SelectPoster
+        {myMovies &&
+          myMovies.map(movie => (
+            <Poster
+              img={movie.movie_image[0]}
+              onClick={() => onClickMovie(movie)}
+              myMovies={myMovies}
               movie={movie}
-              selectMovie={selectMovie}
-              isSelected={selectMovie.find(select => select === movie)}
-            />
-          </Poster>
-        ))}
+              key={movie.id}
+            >
+              <SelectPoster
+                movie={movie}
+                selectMovie={selectMovie}
+                isSelected={selectMovie.find(select => select === movie)}
+              />
+            </Poster>
+          ))}
       </AllMovies>
       <AllBtns>
         <CancelBtn onClick={goBackPage}>취소</CancelBtn>

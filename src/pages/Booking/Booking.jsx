@@ -63,7 +63,7 @@ function Booking() {
 }
 
 const BookingWrapper = styled.div`
-  padding: ${({ primary }) => (primary ? '0  20%' : '0  0 ')};
+  padding: ${({ primary }) => (primary ? '0  23.8%' : '0  0 ')};
   background: ${({ bg }) => bg && '#f8f8fa'};
 `;
 
@@ -86,9 +86,9 @@ const BookingCategoryList = styled.ul`
 
 const Category = styled.li`
   margin-right: 9px;
+  font-size: 13px;
   :first-of-type {
     margin-right: 3px;
-    padding-top: 4px;
   }
   &:hover {
     text-decoration: underline;

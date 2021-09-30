@@ -72,7 +72,7 @@ function Time() {
 }
 
 const TimeWrapper = styled.div`
-  width: 420px;
+  width: 435px;
   height: 530px;
   border-right: 1px solid #d8d9db;
   border-bottom: 1px solid #d8d9db;
