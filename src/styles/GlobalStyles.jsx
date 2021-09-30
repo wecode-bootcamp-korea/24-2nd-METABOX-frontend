@@ -46,6 +46,8 @@ ol,
 ul,
 li {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 h1,
@@ -103,6 +105,7 @@ table {
 
 *{
   box-sizing: border-box;
+  font-family: NanumBarunGothic,Dotum,'돋움',sans-serif;
 }
 `;
 
