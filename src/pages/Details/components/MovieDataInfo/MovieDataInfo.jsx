@@ -51,7 +51,7 @@ const Wrapper = styled.div`
 `;
 
 const MovieInfoWrapper = styled.dl`
-  width: 100%;
+  width: 1100px;
   flex-direction: column;
   text-align: center;
   font-weight: 400;
