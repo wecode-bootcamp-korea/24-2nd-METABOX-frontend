@@ -5,7 +5,7 @@ const SIGNUP = 'users/sign-up';
 export const API = { SIGNIN, SIGNUP };
 
 // 예매
-export const url = `http://10.58.6.216:8000/`;
+export const url = `http://10.58.6.216:8000`;
 
 export const LOCAL_URL = 'http://localhost:3000';
 
