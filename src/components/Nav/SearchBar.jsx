@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import URL from '../../config';
+import { url } from '../../config';
 
 const LIMIT = 5;
 const SORT = '-releaseDate';

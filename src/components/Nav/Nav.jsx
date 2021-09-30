@@ -244,7 +244,7 @@ function Nav() {
             <div>
               <UserLink onClick={goToLogin}>로그인</UserLink>
               <UserLink onClick={goToSignUp}>회원가입</UserLink>
-              <UserLink>빠른예매</UserLink>
+              <UserLink to="/booking">빠른예매</UserLink>
             </div>
           </UserSupportWrapper>
           <CategoryWrapper>
@@ -372,7 +372,7 @@ const CustomerServiceLink = styled(Link)`
   color: #888;
 `;
 
-const UserLink = styled.span`
+const UserLink = styled(Link)`
   margin-left: 20px;
   font-size: 0.75em;
   color: #888;

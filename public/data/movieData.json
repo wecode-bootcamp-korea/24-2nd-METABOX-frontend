@@ -1,0 +1,99 @@
+{
+  "movie": [{
+      "rate": "PG-12",
+      "title": "007 노타임투어",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/09/03/EdklwEN8i1d8A6ndsKHwkKuEUwVkGOau_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-12",
+      "title": "보이스",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/08/30/nFSp8Q8x6oKfoDo6t7BeDeJfgT8W9x0K_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "ALL",
+      "title": "해리포터와마법사돌",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/09/07/3UeqSChjYVBdtycHCNm5fkNhlZeDAWps_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-15",
+      "title": "인질",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/07/14/JxjYc4vqjToiMvQjDnJRI0Z69KGe2XBe_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-12",
+      "title": "너의 이름은.",
+      "startDate": "2021-09-23",
+      "endDate": "2021-09-28",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/09/07/KbLPdrF5WBGN5OemdEEAl9TJ3ncdvOIQ_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-12",
+      "title": "여름날우리",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/08/26/Nctkir9IVqkSGocCinh3w4zqwYIzCWa1_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-15",
+      "title": "아임 유어 맨",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/08/18/fIxIwPNsCtUy3PL5dJJWP9Y8pbRPmpBL_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-12",
+      "title": "상견니",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/09/02/Dh8mxE6ACihgTxAViMjtf9t3KtnfOtXq_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-12",
+      "title": "보이스",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/08/30/nFSp8Q8x6oKfoDo6t7BeDeJfgT8W9x0K_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-15",
+      "title": "캔디맨",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/08/23/O7kbNmn1NL1TVQXwdXpEpW5raAtkXy5e_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-12",
+      "title": "기적",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/08/27/p3Z0Np5ZUIuWc34qQHQMeWhyC0QjxUcT_420.jpg",
+      "like": false
+    },
+    {
+      "rate": "PG-15",
+      "title": "최선의 삶",
+      "startDate": "2021-09-23",
+      "endDate": "2021-10-05",
+      "url": "https://img.megabox.co.kr/SharedImg/2021/08/11/eLq9KAe318dmHqTbhwQ29QRvRXGpr3Uf_420.jpg",
+      "like": false
+    }
+  ]
+}
