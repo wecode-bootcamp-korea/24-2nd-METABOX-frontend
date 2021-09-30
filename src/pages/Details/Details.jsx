@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import MovieDataInfo from './components/MovieDataInfo/MovieDataInfo';
+import MovieReview from './components/MovieReview';
 
 function Details() {
-  const [isClicked, setIsClicked] = useState(1);
+  const [isClicked, setIsClicked] = useState(0);
 
   const onListClick = (e, input) => {
     setIsClicked(e.target.value);
@@ -69,33 +70,35 @@ function Details() {
         <Poster></Poster>
         <BackwardBackgroundWrapper />
       </PosterWrapper>
-      <MovieInfoList>
+      <MovieInfoList onClick={onListClick}>
         {movieInfoList.map((item, index) => {
           return isClicked === index ? (
-            <MovieInfoClicked value={index} key={index} onClick={onListClick}>
+            <MovieInfoClicked value={index} key={index}>
               {item}
             </MovieInfoClicked>
           ) : (
-            <MovieInfo value={index} key={index} onClick={onListClick}>
+            <MovieInfo value={index} key={index}>
               {item}
             </MovieInfo>
           );
         })}
       </MovieInfoList>
 
-      <DetailsInfoWrapper>
+      <DetailsInfoWrapper display={isClicked}>
         <Description>
           가장 강력한 운명의 적과 마주하게된 제임스 본드의 마지막 미션이
           시작된다
         </Description>
+        <MovieDataInfo />
       </DetailsInfoWrapper>
-
-      <MovieDataInfo />
+      <DetailsInfoWrapper2 display={isClicked}>
+        <MovieReview />
+      </DetailsInfoWrapper2>
     </DetailsOuterWrapper>
   );
 }
 
-const movieInfoList = ['주요정보', '실관람평', '무비포스트', '예고편/스틸컷'];
+const movieInfoList = ['주요정보', '실관람평'];
 
 const MovieInfoList = styled.ul`
   display: flex;
@@ -105,7 +108,7 @@ const MovieInfoList = styled.ul`
 
 const MovieInfoClicked = styled.li`
   display: inline-block;
-  width: 25%;
+  width: 50%;
 
   text-align: center;
   padding: 5px 0;
@@ -116,7 +119,7 @@ const MovieInfoClicked = styled.li`
 
 const MovieInfo = styled.li`
   display: inline-block;
-  width: 25%;
+  width: 50%;
 
   border-top: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;
@@ -124,14 +127,11 @@ const MovieInfo = styled.li`
   text-align: center;
   padding: 5px 0;
   cursor: pointer;
-  &:first-child {
-    border: 1px solid #503396;
-    border-bottom: 0;
-  }
 `;
 
 const Description = styled.span`
-  font-size: 1.6em;
+  display:${props => (props.display === 0 ? 'block' : 'none')}
+  font-size: 2.6em;
   color: #444;
   font-weight: 500;
   mamrgin-bottom: 30px;
@@ -279,6 +279,13 @@ const DetailsOuterWrapper = styled.div`
 `;
 
 const DetailsInfoWrapper = styled.div`
+  display: ${props => (props.display === 0 ? 'display' : 'none')};
+  width: 1100px;
+  margin-bottom: 30px;
+`;
+
+const DetailsInfoWrapper2 = styled.div`
+  display: ${props => (props.display === 1 ? 'display' : 'none')};
   width: 1100px;
   margin-bottom: 30px;
 `;

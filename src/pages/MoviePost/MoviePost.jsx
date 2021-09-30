@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { LOCAL_URL } from '../../config';
+import { MAIN_URL } from '../../config';
 import Posts from './Posts';
 import PostModal from './PostModal';
 import backimg from '../../image/sdf.jpeg';
 import AllRankMovies from './AllRankMovies';
 import styled from 'styled-components';
 
-const LIMIT = 4;
+const LIMIT = 8;
 
 function MoviePost() {
   const [rankMovies, setRankMoives] = useState([]);
@@ -24,6 +24,44 @@ function MoviePost() {
   });
   const history = useHistory();
 
+  useEffect(() => {
+    if (pagination.offset !== 0)
+      fetch(
+        `${MAIN_URL}movieposts?limit=${pagination.limit}&offset=${pagination.offset}`
+      )
+        .then(response => response.json())
+        .then(data => {
+          setMovieList(movieList.concat(data.result));
+          setPagination({
+            ...pagination,
+            totalPage: Math.ceil(data.total_count / pagination.limit),
+          });
+        });
+  }, [pagination.offset]);
+
+  useEffect(() => {
+    fetch(
+      `${MAIN_URL}movieposts?limit=${pagination.limit}&offset=${pagination.offset}`
+    )
+      .then(response => response.json())
+      .then(data => {
+        setRankMoives(data.movie_posting_count);
+      });
+
+    fetch(
+      `${MAIN_URL}movieposts?limit=${pagination.limit}&offset=${pagination.offset}`
+    )
+      .then(response => response.json())
+      .then(data => {
+        setPagination({
+          ...pagination,
+          totalPage: Math.ceil(data.total_count / pagination.limit),
+          totalCount: data.total_count,
+        });
+        setMovieList(...movieList, data.result);
+      });
+  }, []);
+
   const onMoreClick = () => {
     setPagination({
       ...pagination,
@@ -32,53 +70,9 @@ function MoviePost() {
     });
   };
 
-  useEffect(() => {
-    if (pagination.offset !== 0)
-      fetch(`${LOCAL_URL}/data/page.json`)
-        .then(response => response.json())
-        .then(data => {
-          setMovieList(
-            movieList.concat(
-              data.result.slice(
-                pagination.offset,
-                pagination.offset + pagination.limit
-              )
-            )
-          );
-          setPagination({
-            ...pagination,
-            totalPage: Math.ceil(data.total_count / pagination.limit),
-          });
-        });
-  }, [pagination.offset]);
-
   const goToWritePage = () => {
     history.push('/moviepost/write');
   };
-
-  useEffect(() => {
-    fetch(`${LOCAL_URL}/data/harry.json`)
-      .then(response => response.json())
-      .then(data => {
-        setRankMoives(data.MOVIE_LIST);
-      });
-
-    fetch(`${LOCAL_URL}/data/page.json`)
-      .then(response => response.json())
-      .then(data => {
-        setPagination({
-          ...pagination,
-          totalPage: data.total_count,
-          totalCount: data.total_count,
-        });
-        setMovieList(
-          data.result.slice(
-            pagination.offset,
-            pagination.offset + pagination.limit
-          )
-        );
-      });
-  }, []);
 
   const clickPost = data => {
     setModalPost(data);
@@ -105,6 +99,17 @@ function MoviePost() {
 
   return (
     <>
+      <BookingCategoryList>
+        <CategoryBack>
+          <Category>
+            <BookingIcon className="fas fa-home" primary />
+          </Category>
+          <Category>
+            <BookingIcon className="fas fa-chevron-right" />
+            <span>무비포스트</span>
+          </Category>
+        </CategoryBack>
+      </BookingCategoryList>
       <HeaderBackground>
         <HeaderContents>
           <HeaderTexts>
@@ -149,6 +154,35 @@ function MoviePost() {
     </>
   );
 }
+
+const BookingCategoryList = styled.ul`
+  padding: 5px 0;
+  font-size: 15px;
+  color: #aaa;
+  background-color: #f8f8fa;
+`;
+
+const CategoryBack = styled.div`
+  display: flex;
+  width: 1090px;
+  margin: 0 auto;
+`;
+
+const Category = styled.li`
+  margin-right: 9px;
+  font-size: 13px;
+  :first-of-type {
+    margin-right: 3px;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const BookingIcon = styled.i`
+  margin-right: 5px;
+  font-size: ${({ primary }) => (primary ? '13px' : '10px')};
+`;
 
 const HeaderBackground = styled.div`
   position: relative;

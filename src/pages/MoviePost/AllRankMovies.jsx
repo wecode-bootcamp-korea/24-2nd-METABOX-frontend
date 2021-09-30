@@ -7,12 +7,12 @@ function AllRankMovies({ rankMovies }) {
       {rankMovies !== [] &&
         rankMovies.map((movie, index) => {
           return (
-            <Poster img={movie.poster_image} key={movie.id}>
+            <Poster img={movie.image_url} key={movie.id}>
               <PosterNum>{index + 1}</PosterNum>
               <AllPostText>
-                <PosterText>{movie.movie_name}</PosterText>
+                <PosterText>{movie.movie_title}</PosterText>
                 <PostText>POST</PostText>
-                <PostCount>{movie.post_count}</PostCount>
+                <PostCount>{movie.count}</PostCount>
               </AllPostText>
             </Poster>
           );
@@ -31,6 +31,7 @@ const Poster = styled.div`
   background-size: cover;
   border-radius: 3px;
   :hover {
+    border-radius: 3px;
     outline: 1.5px solid #ffff;
   }
 `;
@@ -68,9 +69,10 @@ const AllPostText = styled.div`
 `;
 
 const PosterText = styled.h2`
-  margin-top: 70px;
+  margin: 70px 10px 0;
   font-size: 20px;
   font-weight: 300;
+  text-align: center;
   letter-spacing: -0.03rem;
   color: #ffff;
   z-index: 9;

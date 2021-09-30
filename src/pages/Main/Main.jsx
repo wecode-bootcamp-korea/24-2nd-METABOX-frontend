@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
 import Movie from './Movie';
 import SortingSearchArea from './SortingSearchArea';
 import AddMovieButton from './AddMovieButton';
-import URL from '../../config';
+import { MAIN_URL } from '../../config';
 
 const LIMIT = 4;
 
 function Main() {
   const sorters = [
-    { name: '예매율 순', orderBy: '-advanceRate' },
-    { name: '개봉일 순', orderBy: '-releaseDate' },
-    { name: '보고싶어요 순', orderBy: '-movieLikes' },
+    { name: '평점 순', orderBy: 'rating' },
+    { name: '개봉일 순', orderBy: 'release_date' },
+    { name: '보고싶어요 순', orderBy: 'likes' },
   ];
   const [movieList, setMovieList] = useState([]);
   const [pagination, setPagination] = useState({
@@ -28,6 +27,7 @@ function Main() {
   const onMovieSortingClick = e => {
     if (e.target.nodeName === 'BUTTON') {
       const idx = Number(e.target.value);
+      console.log(sorters);
       setSortActive(idx);
       setSortOrderBy(sorters[idx]['orderBy']);
       setPagination({
@@ -38,39 +38,39 @@ function Main() {
     }
   };
 
-  // useEffect(() => {
-  //   if (pagination.offset !== 0)
-  //     fetch(
-  //       `${URL}:8001/movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&search=${searchWords}`
-  //     )
-  //       .then(response => response.json())
-  //       .then(result => {
-  //         setMovieList(movieList.concat(result['results']));
-  //         setPagination({
-  //           ...pagination,
-  //           totalPage: Math.ceil(result['totalCount'] / pagination.limit),
-  //         });
-  //       });
-  // }, [pagination.offset]);
+  useEffect(() => {
+    if (pagination.offset !== 0)
+      fetch(
+        `${MAIN_URL}movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&search=${searchWords}`
+      )
+        .then(response => response.json())
+        .then(result => {
+          setMovieList(movieList.concat(result['Result']));
+          setPagination({
+            ...pagination,
+            totalPage: Math.ceil(result['Total_Count'] / pagination.limit),
+          });
+        });
+  }, [pagination.offset]);
 
   useEffect(() => {
     getMovieList();
   }, [sortOrderBy]);
 
   const getMovieList = () => {
-    // fetch(
-    //   `${URL}:8001/movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&search=${searchWords}`
-    // )
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     setMovieList(result['Result']);
-    //     setPagination({
-    //       ...pagination,
-    //       totalPage: Math.ceil(result['Total_count'] / pagination.limit),
-    //       currentPage: 1,
-    //       offset: 0,
-    //     });
-    //   });
+    fetch(
+      `${MAIN_URL}movies/list?limit=${pagination.limit}&offset=${pagination.offset}&orderby=${sortOrderBy}&movie_name=${searchWords}`
+    )
+      .then(response => response.json())
+      .then(result => {
+        setMovieList(result['Result']);
+        setPagination({
+          ...pagination,
+          totalPage: Math.ceil(result['Total_Count'] / pagination.limit),
+          currentPage: 1,
+          offset: 0,
+        });
+      });
   };
 
   const onAddMovieListClick = () => {
@@ -99,7 +99,7 @@ function Main() {
             movieId={index + 1}
             movieTitle={movie.ko_name}
             movieRating={movie.age_grade}
-            advanceRate={'50'} //ticketing
+            advanceRate={movie.rating} //ticketing
             releaseDate={movie.release_date}
             movieLikes={movie.like_count}
             moviePoster={movie.image_url}
