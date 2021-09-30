@@ -62,6 +62,7 @@ const TopWrapper = styled.div`
   background-color: #333;
   padding-top: 50px;
   padding-bottom: 50px;
+  z-index: 1000;
 `;
 
 const Wrapper = styled.div`

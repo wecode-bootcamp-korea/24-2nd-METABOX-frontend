@@ -2,26 +2,47 @@ import React from 'react';
 import styled from 'styled-components';
 
 function PostMap({ movieList, clickPost }) {
+  //분(minute)으로 받은 시간 시간, 일로 바꿔주는 함수
+  const timeToday = value => {
+    const minuteTime = value;
+
+    if (minuteTime < 1) return '방금전';
+    if (minuteTime < 60) {
+      return `${minuteTime}분 전`;
+    }
+
+    const hourTime = Math.floor(minuteTime / 60);
+    if (hourTime < 24) {
+      return `${hourTime}시간 전`;
+    }
+
+    const dayTime = Math.floor(minuteTime / 60 / 24);
+    if (dayTime < 365) {
+      return `${dayTime}일 전`;
+    }
+
+    return `${Math.floor(dayTime / 365)}년 전`;
+  };
+
   return (
     <>
-      {movieList !== [] &&
-        movieList.map(data => (
-          <OnePost onClick={() => clickPost(data)} key={data.key}>
-            <PostHeadText>{data.movieTitle}</PostHeadText>
-            <PostPoster img={data.moviePoster} />
-            <ProfileContents>
-              <Profile>
-                <Profileimg src={'../../image/cat.jpeg'}></Profileimg>
-                {data.userId}
-              </Profile>
-              <HeartBtn>
-                <i class="far fa-heart"></i> {data.movieLikes}
-              </HeartBtn>
-            </ProfileContents>
-            <PostText>{data.postText}</PostText>
-            <TimeText>15분 전</TimeText>
-          </OnePost>
-        ))}
+      {movieList.map(data => (
+        <OnePost onClick={() => clickPost(data)} key={data.movie_id}>
+          <PostHeadText>{data.movie_title}</PostHeadText>
+          <PostPoster img={data.image_url} />
+          <ProfileContents>
+            <Profile>
+              <Profileimg src={'../../image/cat.jpeg'}></Profileimg>
+              {data.user_email}
+            </Profile>
+            <HeartBtn>
+              <i class="far fa-heart"></i>
+            </HeartBtn>
+          </ProfileContents>
+          <PostText>{data.contents}</PostText>
+          <TimeText>{timeToday(data.created_time)}</TimeText>
+        </OnePost>
+      ))}
     </>
   );
 }

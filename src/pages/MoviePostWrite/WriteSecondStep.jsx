@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MAIN_URL } from '../../config';
 import Postcontent from './Postcontent';
 import styled from 'styled-components';
 
@@ -7,14 +8,14 @@ const commentVal = {
   포스터: false,
 };
 
-function WriteSecondStep({ selectMovie, setIsEnroll }) {
+function WriteSecondStep({ selectMovie, setIsEnroll, history }) {
   const [commentInput, setCommentInput] = useState('');
   const [textCount, setTextCount] = useState(0);
   const [selectedPic, setSelectedPic] = useState(null);
   const [commentImg, setCommentImg] = useState(true);
 
-  const moviePic = selectMovie.still_image.slice(1);
-  const moviePoster = selectMovie.still_image[0];
+  const moviePic = selectMovie.movie_image.slice(1);
+  const moviePoster = selectMovie.movie_image[0];
 
   const selectPic = pic => {
     if (!commentImg) {
@@ -47,15 +48,32 @@ function WriteSecondStep({ selectMovie, setIsEnroll }) {
     setCommentImg(commentVal[comment]);
   };
 
+  const addComment = () => {
+    fetch(`${MAIN_URL}movieposts`, {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('Kakao_token'),
+      },
+      body: JSON.stringify({
+        movie_id: selectMovie.movie_id,
+        // contents1: `${commentInput.comment},${selectedPic.pic}`,
+        contents: commentInput.comment,
+        image_url: selectedPic.pic,
+      }),
+    })
+      .then(res => res.json())
+      .then(history.push('/moviepost'));
+  };
+
   // 나중에 post로 넘겨줄 항목들 검사
-  // console.log(commentInput.comment);
-  // console.log(selectMovie.movie_name);
-  // console.log(selectPic.pic !== null && selectedPic.pic);
+  console.log(commentInput.comment);
+  console.log(selectMovie);
+  // console.log(`${commentInput.comment}+${selectedPic.pic}`);
 
   return (
     <>
       <PostTexts>
-        <MovieTitle>{selectMovie.movie_name}</MovieTitle>
+        <MovieTitle>{selectMovie.movie_title}</MovieTitle>
         <ReturnBtn onClick={replacePage}>
           <i class="fas fa-undo"></i> 다시선택
         </ReturnBtn>
@@ -102,7 +120,7 @@ function WriteSecondStep({ selectMovie, setIsEnroll }) {
         형사적 책임이 수반될 수 있습니다.
       </WarningText>
       <AllBtns>
-        <EnrollBtn>등록</EnrollBtn>
+        <EnrollBtn onClick={addComment}>등록</EnrollBtn>
         <CancelBtn onClick={replacePage}>취소</CancelBtn>
       </AllBtns>
     </>

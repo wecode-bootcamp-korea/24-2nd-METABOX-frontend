@@ -127,7 +127,8 @@ const CalendarDate = styled.span`
 const CalendarIcon = styled.i`
   display: block;
   padding: 0 1.5px;
-  font-size: 2px;
+  font-size: 1px;
+  transform: scale(0.5);
 `;
 
 const YearMonthTag = styled.div`

@@ -1,4 +1,6 @@
 import React from 'react';
+// import { useHistory } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -12,13 +14,24 @@ function Movie({
   releaseDate,
   movieLikes,
 }) {
+  // let content;
+  // content.innerHTML = description;
+
+  // console.log(content);
+  // console.log(description.innerText);
+  // const history = useHistory();
+
   return (
     <MovieCard>
       <MovieOrder>{movieId}</MovieOrder>
-      <a href="#">
+      <a href="/details">
         <MoviePoster moviePoster={moviePoster}>
           <MoviePosterImage src={moviePoster} alt="" max-width="100%" />
-          <MoviePosterDescription>{description}</MoviePosterDescription>
+          {/* <MoviePosterDescription>{description}</MoviePosterDescription> */}
+          <MoviePosterDescription>
+            샹치는 마블 코믹스가 발행하는 미국 만화에 등장하는 슈퍼히어로이며,
+            마스터 오브 쿵푸, 브라더 핸드라는 이름으로도 알려져 있다.
+          </MoviePosterDescription>
         </MoviePoster>
       </a>
       <TitleWrapper>
@@ -28,7 +41,7 @@ function Movie({
         <MovieTitle>{movieTitle}</MovieTitle>
       </TitleWrapper>
       <RateDateWrapper>
-        <Rate>예매율 {advanceRate + '%'}</Rate>
+        <Rate>평점 {advanceRate}</Rate>
         <span>개봉일 {releaseDate.split('-').join('.')}</span>
       </RateDateWrapper>
       <LikesTicketWrapper>
@@ -52,7 +65,7 @@ const MoviePosterDescription = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 30px 25px;
+  padding: 80px 25px;
   color: white;
   top: 0;
   opacity: 0;
@@ -121,7 +134,7 @@ const LikesIcon = styled.span`
 
 const Rate = styled.span`
   margin-right: 8px;
-  &: after {
+  :after {
     content: '';
     font-size: 3px;
     border-right: 1px solid #d8d9db;

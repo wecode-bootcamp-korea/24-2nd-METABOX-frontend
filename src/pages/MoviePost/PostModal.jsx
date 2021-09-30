@@ -23,20 +23,20 @@ function PostModal({ modalPost, toggleModal, onClickWindow }) {
           <CloseBtn onClick={toggleModal}>&times;</CloseBtn>
         </TitleWrapper>
         <PostContainer>
-          <PostHeadText>{modalPost.movieTitle}</PostHeadText>
+          <PostHeadText>{modalPost.movie_title}</PostHeadText>
           <OnePost>
             <ProfileContents>
               <Profile>
                 <Profileimg src={'../../image/cat.jpeg'} />
-                {modalPost.userId}
+                {modalPost.user_email}
               </Profile>
               <HeartBtn>
-                <i class="far fa-heart"></i> {modalPost.movieLikes}
+                <i class="far fa-heart"></i> {modalPost.like_count}
               </HeartBtn>
             </ProfileContents>
             <PosterBg>
-              <PostPoster img={modalPost.moviePoster} />
-              <PostText>{modalPost.postText}</PostText>
+              <PostPoster img={modalPost.image_url} />
+              <PostText>{modalPost.contents}</PostText>
             </PosterBg>
           </OnePost>
         </PostContainer>

@@ -18,7 +18,6 @@ function Theater() {
     fetch('/data/movieCity.json')
       .then(res => res.json())
       .then(data => setTheaterCityList(data));
-
     fetch(`${url}/bookings`)
       .then(res => res.json())
       .then(data =>
@@ -59,7 +58,7 @@ const TheaterTitle = styled.h3`
 `;
 
 const TheaterWrapper = styled.div`
-  width: 290px;
+  width: 300px;
   padding: 0 20px 0 18px;
   border-right: 1px solid #d8d9db;
   border-bottom: 1px solid #d8d9db;
