@@ -52,7 +52,7 @@
 
 - `[Nav]` : 기본 라우팅, 사이트맵, 검색 창 클릭 이벤트
 - `[Main]` : 영화 리스트 pagination / 정렬 (평점/개봉일/보고싶어요)
-- `[Details]` : radar, block, line 그래프를 이용하여 영화 주요 정보 표현3> 
+- `[Details]` : radar, block, line 그래프를 이용하여 영화 주요 정보 표현
 - `Libraries` : chart.js
 #### 이송현님
 
