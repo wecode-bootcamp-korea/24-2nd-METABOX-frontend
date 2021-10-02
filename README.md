@@ -27,16 +27,27 @@
 
 ---
 
+### 실행환경
+
+- MacOSX
+- Ubuntu
+- Conda 4.10.3 version
+- Django 3.2.6 version
+- MySQL 5.7 version
+- mysqlclient 2.0.3 version
+- Django-cors-headers 3.7.0 version
+
 ### 적용기술
 
 - FrontEnd : html, styled-compnents, javascript, react
-- BackEnd : (생략)
+- BackEnd : Python v.3.9, Django v.3.2.4, MySQL v.2.0.3
 
 ### 협업도구
 
 - Slack
 - Git & Github
 - Trello
+- Postman
 
 ### FrontEnd 구현기능
 
@@ -64,7 +75,43 @@
 
 ### BackEnd 구현기능
 
-(생략)
+#### 윤현묵님
+
+- `[Movie]`
+  - 영화 목록 조회 기능 구현
+  - Pagenation
+  - 영화 상세 정보 조회 기능 구현
+  - 영화 찜 기능(좋아요 기능)
+  - 영화 목록 정렬 기능 구현(최신 순, 평점 순, 좋아요 순 등)
+
+- `[DB Upload]`
+  - CSV 파일을 이용한 Script DB Uploader 기능 구현
+
+#### 주종민님
+
+- `[User]`
+  - `[Sign up]` : METABOX 회원가입 기능 구현
+  - `[Sign in]` : 일반 로그인 기능
+  - `[Social log in]` : 소셜 로그인(카카오 로그인) 기능 구현
+  - `[JWT]` : Json Web Token 발급 및 토큰 만료 기능 구현
+
+#### 송치헌님
+
+- `[Booking]`
+  - 상영 날짜, 영화, 영화관 별로 상영 시간을 필터링하는 기능 구현
+  - 좌석 설정 기능 구현
+  - 예매 내역 조회 기능 구현
+
+- `[Authorization]
+  - python decorator를 이용한 인가 기능 구현(로그인 데코레이터)
+
+#### 공통 구현기능
+
+- `[MoviePost](영화 리뷰)`
+  - 리뷰 작성 기능 구현(인가된 유저만 작성 가능)
+  - 모든 리뷰 조회 기능 구현
+  - 리뷰 정렬 기능 구현(최신 순, 공감 순)
+  - Pagenation
 
 ## 📃 Reference
 
