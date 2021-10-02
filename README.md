@@ -57,7 +57,7 @@
 #### 이송현님
 
 - `[Booking]`
-- 예매 화면의 상단 캘린더 로직, 
+- 예매 화면의 상단 캘린더 로직
 - 달력 아이콘 클릭 시, 테이블 형태의 캘린더 fold/unfold 로직 구현
 - 메가박스의 빠른 예매 기본 프로세스와 동일한 로직 구현
 - `Libraries` : date-fns, React Date Picker
