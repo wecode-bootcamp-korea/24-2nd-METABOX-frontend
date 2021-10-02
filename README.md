@@ -40,7 +40,7 @@
 ### 적용기술
 
 - FrontEnd : html, styled-compnents, javascript, react
-- BackEnd : Python v.3.9, Django v.3.2.4, MySQL v.2.0.3
+- BackEnd : Python, Django, MySQL
 
 ### 협업도구
 
