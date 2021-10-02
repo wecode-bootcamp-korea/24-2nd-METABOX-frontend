@@ -102,7 +102,7 @@
   - 좌석 설정 기능 구현
   - 예매 내역 조회 기능 구현
 
-- `[Authorization]
+- `[Authorization]`
   - python decorator를 이용한 인가 기능 구현(로그인 데코레이터)
 
 #### 공통 구현기능
