@@ -42,12 +42,8 @@
 
 #### 김영현님
 
-- `[MoviePost]`
-1> pagination 
-2> 무비포스트 상세 modal
-- `[MoviePostWrite]`
-1> 이미지 파일을 포함한 포스트 작성
-2> 50자 이내 제한
+- `[MoviePost]` : pagination, 무비포스트 상세 modal
+- `[MoviePostWrite]`, 이미지 파일을 포함한 포스트 작성, 50자 이내 제한
 - `[Modal]` : 로그인/회원가입, 소셜 로그인/회원가입 
 - `[Footer]` 
 - 로고 디자인
